@@ -3,21 +3,20 @@ import Messages from "./Messages";
 import Input from "./Input"
 
 function randomName() {
-  // Random name generation logic
-}
+  const names = ["Ana", "Ivan", "Mia", "Luka", "Ema", "Marko", "Lana", "Petar", "Lara", "Filip", "Sara", "Nikola", "Elena", "Matija", "Lorena", "Stjepan", "Eva", "Leon", "Lea", "Ante", "Marta", "Marin", "Maja", "Ivano", "Dora", "Josip", "Tina", "Toni", "Ivana", "Leo", "Marta", "Patrik", "Nina", "Lovro", "Ela", "Ivo", "Barbara", "David", "Lena", "Domagoj", "Laura", "Borna", "Klara", "Dino", "Magdalena", "Robert", "Lucija", "Filip", "Ana", "Tin", "Andrea", "Dominik"];
+  return names[Math.floor(Math.random() * names.length)];
+};
 
 function randomColor() {
-  // Random color generation logic
-}
+  return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
+};
 
 class App extends Component {
   state = {
     messages: [],
     member: {
-      clientData: {
-        username: randomName(),
-        color: randomColor()
-      }
+      username: randomName(),
+      color: randomColor()
     }
   };
 
