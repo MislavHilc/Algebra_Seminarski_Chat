@@ -13,7 +13,7 @@ class Input extends Component {
             onChange={e => this.onChange(e)}
             value={this.state.text}
             type="text"
-            placeholder="Unesite Vašu poruku i pritisnite gumb desno ili tipku ENTER"
+            placeholder="Unesite Vašu poruku..."
             autoFocus={true}
           />
           <button><i class="fa-solid fa-paper-plane"></i></button>

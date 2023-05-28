@@ -6,11 +6,11 @@
 }
 
 .App-header {
-  background-color: #262626;
+  background-color: transparent;
   overflow: visible;
   width: 100%;
   text-align: center;
-  color: white;
+  color: #383a49;
 }
 
 .Messages-list {
