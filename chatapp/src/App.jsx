@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Messages from "./Messages";
+import Input from "./Input"
 
 function randomName() {
   // Random name generation logic
@@ -33,9 +34,27 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Messages messages={this.state.messages} currentMember={this.state.member} />
+        <div className="App-header">
+          <h1>My Chat App</h1>
+        </div>
+        <Messages
+          messages={this.state.messages}
+          currentMember={this.state.member}
+        />
+        <Input
+          onSendMessage={this.onSendMessage}
+        />
       </div>
     );
+  }
+
+  onSendMessage = (message) => {
+    const messages = this.state.messages
+    messages.push({
+      text: message,
+      member: this.state.member
+    })
+    this.setState({messages: messages})
   }
 }
 
