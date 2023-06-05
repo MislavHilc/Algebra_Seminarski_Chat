@@ -56,28 +56,37 @@ class App extends Component {
   }
 
   render() {
+    const { member, messages, showChat } = this.state;
+  
     return (
       <div className="App">
         <div className="App-header">
           <h1>Chat</h1>
-          <div>
-            <label htmlFor="username">Username:</label>
-            <input
-              id="username"
-              type="text"
-              value={this.state.member.username}
-              onChange={this.handleUsernameChange}
-            />
-          </div>
+          {!showChat && (
+            <div>
+              <label htmlFor="username">Unesite Vaše ime:</label>
+              <input
+                id="username"
+                type="text"
+                value={member.username}
+                onChange={this.handleUsernameChange}
+              />
+              <button onClick={() => this.setState({ showChat: true })}>
+              Spremi
+              </button>
+            </div>
+          )}
         </div>
-        <Messages
-          messages={this.state.messages}
-          currentMember={this.state.member}
-        />
-        <Input onSendMessage={this.onSendMessage} />
+  
+        {showChat && (
+          <React.Fragment>
+            <Messages messages={messages} currentMember={member} />
+            <Input onSendMessage={this.onSendMessage} />
+          </React.Fragment>
+        )}
       </div>
     );
   }
-}
+  }
 
 export default App;
