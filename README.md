@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Chat Aplikacija
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ovo je osnovna aplikacija za chat koja omogućuje korisnicima komunikaciju u zajedničkoj prostoriji. Korisnici mogu unijeti svoje korisničko ime i odabrati boju koja ih predstavlja. Nakon što se pridruže prostoriji, mogu slati poruke koje se prikazuju svim ostalim korisnicima u prostoriji.
 
-## Available Scripts
+## Značajke
 
-In the project directory, you can run:
+- Korisnik može unijeti svoje korisničko ime
+- Korisnik može odabrati boju koja ga predstavlja
+- Korisnik može slati poruke
+- Poruke se prikazuju svim korisnicima u prostoriji
 
-### `npm start`
+## Korištene tehnologije
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ova aplikacija je izgrađena pomoću:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [React](https://reactjs.org/): JavaScript biblioteka za izgradnju korisničkih sučelja.
+- [Scaledrone](https://www.scaledrone.com/): Usluga za real time razmjene poruka.
 
-### `npm test`
+## Komponente
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Aplikacija je strukturirana u četiri glavne komponente:
 
-### `npm run build`
+- `App.jsx`: Ovo je glavna komponenta. Obrađuje proces prijave korisnika i slanje poruka.
+- `UserForm.jsx`: Ova komponenta prikazuje obrazac korisniku za unos korisničkog imena i odabir boje.
+- `Input.jsx`: Ova komponenta pruža obrazac za slanje poruka.
+- `Messages.jsx`: Ova komponenta obrađuje prikaz poruka.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Pokretanje aplikacije
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Da biste pokrenuli ovu aplikaciju, morate imati instaliran Node.js i npm na svom računalu. Upute su sljedeće:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Klonirajte ovaj repozitorij
+2. Instalirajte potrebne ovisnosti koristeći `npm install`
+3. Pokrenite aplikaciju koristeći `npm start`
+4. Otvorite svoj preglednik i otvorite adresu `localhost:3000`
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Napomena: Također ćete morati pružiti vlastiti Scaledrone ID kanala u datoteci `App.jsx`.
