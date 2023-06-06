@@ -8,18 +8,21 @@ class UserForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <label>
+      <>
+      <h1>Unesite Vaše podatke</h1>
+      <form onSubmit={this.onSubmit} className="initiate">
+        <label className="initial">
           Vaše ime:
           <input
             name="username"
             type="text"
             value={this.state.username}
+            className="ime"
             onChange={this.onChange}
             required
           />
         </label>
-        <label>
+        <label className="initial">
           Željena boja:
           <input
             name="color"
@@ -28,8 +31,9 @@ class UserForm extends Component {
             onChange={this.onChange}
           />
         </label>
-        <button type="submit">Spremi</button>
+        <button className="init" type="submit">Spremi</button>
       </form>
+      </>
     );
   }
 
