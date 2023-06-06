@@ -1,92 +1,72 @@
 import React, { Component } from "react";
 import Messages from "./Messages";
 import Input from "./Input";
+import UserForm from "./UserForm";
 
 class App extends Component {
   state = {
     messages: [],
-    member: {
-      username: "",
-    },
+    member: null,
   };
 
-  handleUsernameChange = (event) => {
-    const { value } = event.target;
-    this.setState((prevState) => ({
-      member: {
-        ...prevState.member,
-        username: value,
-      },
-    }));
-  };
+  render() {
+    if (this.state.member === null) {
+      return <UserForm onUserSubmit={this.onUserSubmit} />;
+    } else {
+      return (
+        <div className="App">
+          <div className="App-header">
+            <h1>Chat</h1>
+          </div>
+          <Messages
+            messages={this.state.messages}
+            currentMember={this.state.member}
+          />
+          <Input
+            onSendMessage={this.onSendMessage}
+          />
+        </div>
+      );
+    }
+  }
 
-  onSendMessage = (message) => {
-    const { text } = message;
-
-    const updatedMessage = {
-      text,
-      member: {
-        username: this.state.member.username,
-      },
-    };
-
-    const messages = [...this.state.messages, updatedMessage];
-    this.setState({ messages });
-  };
-
-  componentDidMount() {
+  onUserSubmit = (member) => {
+    this.setState({ member });
+  
     this.drone = new window.Scaledrone("NmKR0z2Yk7epHuQY", {
-      data: this.state.member,
+      clientData: this.state.member
     });
-
-    this.drone.on("open", (error) => {
+  
+    this.drone.on('open', error => {
       if (error) {
         return console.error(error);
       }
-      const member = { ...this.state.member };
+      const member = {...this.state.member};
       member.id = this.drone.clientId;
-      this.setState({ member });
+      this.setState({member});
       const room = this.drone.subscribe("observable-room");
-      room.on("data", (data, member) => {
-        const messages = this.state.messages;
-        messages.push({ member, text: data });
-        this.setState({ messages });
-      });
+      room.on('data', (data, member) => {
+        console.log('Received data:', data);
+        if (data.member === undefined) {
+          console.log('data.member is undefined for this message:', data);
+        } else {
+          const messages = this.state.messages;
+          messages.push({ member: data.member, text: data.text });
+          this.setState({ messages });
+        }
+      });                      
     });
   }
-
-  render() {
-    const { member, messages, showChat } = this.state;
   
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h1>Chat</h1>
-          {!showChat && (
-            <div>
-              <label htmlFor="username">Unesite Vaše ime:</label>
-              <input
-                id="username"
-                type="text"
-                value={member.username}
-                onChange={this.handleUsernameChange}
-              />
-              <button onClick={() => this.setState({ showChat: true })}>
-              Spremi
-              </button>
-            </div>
-          )}
-        </div>
-  
-        {showChat && (
-          <React.Fragment>
-            <Messages messages={messages} currentMember={member} />
-            <Input onSendMessage={this.onSendMessage} />
-          </React.Fragment>
-        )}
-      </div>
-    );
-  }
-  }
+  onSendMessage = (message) => {
+    this.drone.publish({
+      room: "observable-room",
+      message: {
+        text: message,
+        member: this.state.member,
+      },
+    });
+  };  
+}
 
 export default App;

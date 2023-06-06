@@ -2,9 +2,7 @@ import React, { Component } from "react";
 
 class Input extends Component {
   state = {
-    text: "",
-    username: "",
-    color: "",
+    text: ""
   };
 
   render() {
@@ -31,12 +29,8 @@ class Input extends Component {
   onSubmit(e) {
     e.preventDefault();
     this.setState({ text: "" });
-    this.props.onSendMessage({
-      text: this.state.text,
-      username: this.state.username,
-      color: this.state.color,
-    });
-  }  
+    this.props.onSendMessage(this.state.text);
+  }
 }
 
 export default Input;
