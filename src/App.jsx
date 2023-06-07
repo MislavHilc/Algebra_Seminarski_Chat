@@ -10,6 +10,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(process.env.REACT_APP_SCALEDRONE_API_KEY);
     if (this.state.member === null) {
       return <UserForm onUserSubmit={this.onUserSubmit} />;
     } else {
@@ -33,9 +34,11 @@ class App extends Component {
   onUserSubmit = (member) => {
     this.setState({ member });
   
-    this.drone = new window.Scaledrone("tYilfmRvjC1hb825", {
+    console.log(process.env.REACT_APP_SCALEDRONE_API_KEY);
+    this.drone = new window.Scaledrone(process.env.REACT_APP_SCALEDRONE_API_KEY, {
       clientData: this.state.member
-    });
+    }); 
+     
   
     this.drone.on('open', error => {
       if (error) {
